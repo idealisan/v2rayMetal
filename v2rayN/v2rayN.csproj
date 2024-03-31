@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>latestmajor</LangVersion>
     <OutputType>WinExe</OutputType>
     <UseWindowsForms>true</UseWindowsForms>
     <Copyright>Copyright © 2019-2022 (GPLv3)</Copyright>
@@ -11,6 +11,7 @@
     <ApplicationIcon>v2rayN.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="app.manifest" />
     <None Remove="Sample\custom_routing_black" />
     <None Remove="Sample\custom_routing_global" />
     <None Remove="Sample\custom_routing_locked" />
@@ -21,6 +22,9 @@
     <None Remove="Sample\SampleHttpresponse.txt" />
     <None Remove="Sample\SampleInbound.txt" />
     <None Remove="Sample\SampleServerConfig.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sample\custom_routing_black" />
@@ -77,9 +81,23 @@
       <Version>0.16.8</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>del $(TargetDir)*.xml $(TargetDir)*.so $(TargetDir)*.dylib
 if not "$(ConfigurationName)" == "Debug" del $(TargetDir)*.pdb</PostBuildEvent>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <StartupObject>v2rayN.Program</StartupObject>
   </PropertyGroup>
 </Project>
