@@ -9,12 +9,12 @@ namespace v2rayN
 
         //public const string DownloadFileName = "v2ray-windows.zip";
         public const string v2rayWebsiteUrl = @"https://www.v2fly.org/";
-        public const string AboutUrl = @"https://github.com/2dust/v2rayN";
+        public const string AboutUrl = @"https://github.com/idealisan/v2rayMetal";
         public const string UpdateUrl = AboutUrl + @"/releases";
         public const string v2flyCoreUrl = "https://github.com/v2fly/v2ray-core/releases";
         public const string xrayCoreUrl = "https://github.com/XTLS/Xray-core/releases";
         public const string SagerNetCoreUrl = "https://github.com/SagerNet/v2ray-core/releases";
-        public const string NUrl = @"https://github.com/2dust/v2rayN/releases";
+        public const string NUrl = @"https://github.com/idealisan/v2rayMetal/releases";
         public const string clashCoreUrl = "https://github.com/Dreamacro/clash/releases";
         public const string clashMetaCoreUrl = "https://github.com/MetaCubeX/Clash.Meta/releases";
         public const string hysteriaCoreUrl = "https://github.com/HyNetwork/hysteria/releases";
@@ -29,19 +29,13 @@ namespace v2rayN
         /// <summary>
         /// SpeedTestUrl
         /// </summary>
-        public const string SpeedTestUrl = @"http://cachefly.cachefly.net/10mb.test";
-        public const string SpeedPingTestUrl = @"https://www.google.com/generate_204";
+        public const string SpeedTestUrl = @"https://speed.cloudflare.com/__down?bytes=10000000";
+        public const string ConnectTestUrl = @"http://www.msftconnecttest.com/connecttest.txt";
 
         /// <summary>
         /// CustomRoutingListUrl
         /// </summary>
         public const string CustomRoutingListUrl = @"https://raw.githubusercontent.com/2dust/v2rayCustomRoutingList/master/";
-
-
-        /// <summary>
-        /// PromotionUrl
-        /// </summary>
-        public const string PromotionUrl = @"aHR0cHM6Ly85LjIzNDQ1Ni54eXovYWJjLmh0bWw=";
 
         /// <summary>
         /// 本软件配置文件名

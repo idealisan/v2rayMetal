@@ -31,8 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.scServers = new System.Windows.Forms.SplitContainer();
-            this.lvServers = new v2rayN.Base.ListViewFlickerFree();
-            this.cmsLv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.serversMenuList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAddVmessServer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddVlessServer = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddShadowsocksServer = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,14 +67,13 @@
             this.menuExport2ServerConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExport2ShareUrl = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExport2SubContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbServer = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tabGroup = new System.Windows.Forms.TabControl();
             this.qrCodeControl = new v2rayN.Forms.QRCodeControl();
+            this.tsbServer = new System.Windows.Forms.ToolStripDropDownButton();
             this.scBig = new System.Windows.Forms.SplitContainer();
             this.gbServers = new System.Windows.Forms.GroupBox();
             this.mainMsgControl = new v2rayN.Forms.MainMsgControl();
             this.notifyMain = new System.Windows.Forms.NotifyIcon(this.components);
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuSysAgentMode = new System.Windows.Forms.ToolStripMenuItem();
             this.menuKeepClear = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGlobal = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,17 +128,19 @@
             this.tsbLanguageZhHans = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
+            this.tabGroup = new System.Windows.Forms.TabControl();
+            this.lvServers = new v2rayN.Base.ListViewFlickerFree();
             ((System.ComponentModel.ISupportInitialize)(this.scServers)).BeginInit();
             this.scServers.Panel1.SuspendLayout();
             this.scServers.Panel2.SuspendLayout();
             this.scServers.SuspendLayout();
-            this.cmsLv.SuspendLayout();
+            this.serversMenuList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scBig)).BeginInit();
             this.scBig.Panel1.SuspendLayout();
             this.scBig.Panel2.SuspendLayout();
             this.scBig.SuspendLayout();
             this.gbServers.SuspendLayout();
-            this.cmsMain.SuspendLayout();
+            this.trayMenu.SuspendLayout();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,30 +160,10 @@
             this.scServers.Panel2.Controls.Add(this.qrCodeControl);
             this.scServers.TabStop = false;
             // 
-            // lvServers
+            // serversMenuList
             // 
-            this.lvServers.ContextMenuStrip = this.cmsLv;
-            resources.ApplyResources(this.lvServers, "lvServers");
-            this.lvServers.FullRowSelect = true;
-            this.lvServers.GridLines = true;
-            this.lvServers.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvServers.HideSelection = false;
-            this.lvServers.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            ((System.Windows.Forms.ListViewItem)(resources.GetObject("lvServers.Items")))});
-            this.lvServers.MultiSelect = false;
-            this.lvServers.Name = "lvServers";
-            this.lvServers.UseCompatibleStateImageBehavior = false;
-            this.lvServers.View = System.Windows.Forms.View.Details;
-            this.lvServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvServers_ColumnClick);
-            this.lvServers.SelectedIndexChanged += new System.EventHandler(this.lvServers_SelectedIndexChanged);
-            this.lvServers.Click += new System.EventHandler(this.lvServers_Click);
-            this.lvServers.DoubleClick += new System.EventHandler(this.lvServers_DoubleClick);
-            this.lvServers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvServers_KeyDown);
-            // 
-            // cmsLv
-            // 
-            this.cmsLv.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsLv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serversMenuList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.serversMenuList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAddVmessServer,
             this.menuAddVlessServer,
             this.menuAddShadowsocksServer,
@@ -215,9 +195,9 @@
             this.menuExport2ServerConfig,
             this.menuExport2ShareUrl,
             this.menuExport2SubContent});
-            this.cmsLv.Name = "cmsLv";
-            this.cmsLv.OwnerItem = this.tsbServer;
-            resources.ApplyResources(this.cmsLv, "cmsLv");
+            this.serversMenuList.Name = "cmsLv";
+            this.serversMenuList.OwnerItem = this.tsbServer;
+            resources.ApplyResources(this.serversMenuList, "serversMenuList");
             // 
             // menuAddVmessServer
             // 
@@ -429,24 +409,17 @@
             resources.ApplyResources(this.menuExport2SubContent, "menuExport2SubContent");
             this.menuExport2SubContent.Click += new System.EventHandler(this.menuExport2SubContent_Click);
             // 
-            // tsbServer
-            // 
-            this.tsbServer.DropDown = this.cmsLv;
-            this.tsbServer.Image = global::v2rayN.Properties.Resources.server;
-            resources.ApplyResources(this.tsbServer, "tsbServer");
-            this.tsbServer.Name = "tsbServer";
-            // 
-            // tabGroup
-            // 
-            resources.ApplyResources(this.tabGroup, "tabGroup");
-            this.tabGroup.Name = "tabGroup";
-            this.tabGroup.SelectedIndex = 0;
-            this.tabGroup.SelectedIndexChanged += new System.EventHandler(this.tabGroup_SelectedIndexChanged);
-            // 
             // qrCodeControl
             // 
             resources.ApplyResources(this.qrCodeControl, "qrCodeControl");
             this.qrCodeControl.Name = "qrCodeControl";
+            // 
+            // tsbServer
+            // 
+            this.tsbServer.DropDown = this.serversMenuList;
+            this.tsbServer.Image = global::v2rayN.Properties.Resources.server;
+            resources.ApplyResources(this.tsbServer, "tsbServer");
+            this.tsbServer.Name = "tsbServer";
             // 
             // scBig
             // 
@@ -463,10 +436,12 @@
             // 
             // gbServers
             // 
+            this.gbServers.BackColor = System.Drawing.SystemColors.Control;
             this.gbServers.Controls.Add(this.scServers);
             resources.ApplyResources(this.gbServers, "gbServers");
             this.gbServers.Name = "gbServers";
             this.gbServers.TabStop = false;
+            this.gbServers.Tag = "";
             // 
             // mainMsgControl
             // 
@@ -475,15 +450,15 @@
             // 
             // notifyMain
             // 
-            this.notifyMain.ContextMenuStrip = this.cmsMain;
+            this.notifyMain.ContextMenuStrip = this.trayMenu;
             resources.ApplyResources(this.notifyMain, "notifyMain");
             this.notifyMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyMain_MouseClick);
             // 
-            // cmsMain
+            // trayMenu
             // 
-            this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            resources.ApplyResources(this.cmsMain, "cmsMain");
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.trayMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.trayMenu, "trayMenu");
+            this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSysAgentMode,
             this.menuRoutings,
             this.menuServers,
@@ -494,10 +469,10 @@
             this.menuUpdateSubViaProxy,
             this.toolStripSeparator2,
             this.menuExit});
-            this.cmsMain.Name = "contextMenuStrip1";
-            this.cmsMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.cmsMain.ShowCheckMargin = true;
-            this.cmsMain.ShowImageMargin = false;
+            this.trayMenu.Name = "contextMenuStrip1";
+            this.trayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.trayMenu.ShowCheckMargin = true;
+            this.trayMenu.ShowImageMargin = false;
             // 
             // menuSysAgentMode
             // 
@@ -862,6 +837,32 @@
             this.tsbClose.Name = "tsbClose";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
+            // tabGroup
+            // 
+            resources.ApplyResources(this.tabGroup, "tabGroup");
+            this.tabGroup.Name = "tabGroup";
+            this.tabGroup.SelectedIndex = 0;
+            this.tabGroup.SelectedIndexChanged += new System.EventHandler(this.tabGroup_SelectedIndexChanged);
+            // 
+            // lvServers
+            // 
+            this.lvServers.ContextMenuStrip = this.serversMenuList;
+            resources.ApplyResources(this.lvServers, "lvServers");
+            this.lvServers.FullRowSelect = true;
+            this.lvServers.GridLines = true;
+            this.lvServers.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvServers.HideSelection = false;
+            this.lvServers.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("lvServers.Items")))});
+            this.lvServers.MultiSelect = false;
+            this.lvServers.Name = "lvServers";
+            this.lvServers.UseCompatibleStateImageBehavior = false;
+            this.lvServers.View = System.Windows.Forms.View.Details;
+            this.lvServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvServers_ColumnClick);
+            this.lvServers.Click += new System.EventHandler(this.lvServers_Click);
+            this.lvServers.DoubleClick += new System.EventHandler(this.lvServers_DoubleClick);
+            this.lvServers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvServers_KeyDown);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -881,13 +882,13 @@
             this.scServers.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scServers)).EndInit();
             this.scServers.ResumeLayout(false);
-            this.cmsLv.ResumeLayout(false);
+            this.serversMenuList.ResumeLayout(false);
             this.scBig.Panel1.ResumeLayout(false);
             this.scBig.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scBig)).EndInit();
             this.scBig.ResumeLayout(false);
             this.gbServers.ResumeLayout(false);
-            this.cmsMain.ResumeLayout(false);
+            this.trayMenu.ResumeLayout(false);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ResumeLayout(false);
@@ -898,14 +899,13 @@
 #endregion
 
         private System.Windows.Forms.GroupBox gbServers;
-        private v2rayN.Base.ListViewFlickerFree lvServers;
         private System.Windows.Forms.NotifyIcon notifyMain;
-        private System.Windows.Forms.ContextMenuStrip cmsMain;
+        private System.Windows.Forms.ContextMenuStrip trayMenu;
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem menuServers;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ContextMenuStrip cmsLv;
+        private System.Windows.Forms.ContextMenuStrip serversMenuList;
         private System.Windows.Forms.ToolStripMenuItem menuAddVmessServer;
         private System.Windows.Forms.ToolStripMenuItem menuRemoveServer;
         private System.Windows.Forms.ToolStripMenuItem menuSetDefaultServer;
@@ -979,7 +979,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsbSubUpdateViaProxy;
         private System.Windows.Forms.ToolStripMenuItem menuUpdateSubViaProxy;
         private System.Windows.Forms.ToolStripMenuItem tsbGlobalHotkeySetting;
-        private System.Windows.Forms.TabControl tabGroup;
         private System.Windows.Forms.ToolStripMenuItem tsbGroupSetting;
         private System.Windows.Forms.ToolStripMenuItem menuMoveToGroup;
         private MainMsgControl mainMsgControl;
@@ -997,6 +996,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsbSubGroupUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsbSubGroupUpdateViaProxy;
         private System.Windows.Forms.ToolStripMenuItem tsbRestoreGuiNConfig;
+        private Base.ListViewFlickerFree lvServers;
+        private System.Windows.Forms.TabControl tabGroup;
     }
 }
 

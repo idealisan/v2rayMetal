@@ -69,3 +69,4 @@ C:\codeBase\classicV2rayN\v2rayN\v2rayN\obj\Debug\net48\zh-Hans\v2rayN.resources
 C:\codeBase\classicV2rayN\v2rayN\v2rayN\obj\Debug\net48\v2rayN.csproj.CopyComplete
 C:\codeBase\classicV2rayN\v2rayN\v2rayN\obj\Debug\net48\v2rayN.exe
 C:\codeBase\classicV2rayN\v2rayN\v2rayN\obj\Debug\net48\v2rayN.pdb
+C:\codeBase\classicV2rayN\v2rayN\v2rayN\obj\Debug\net48\v2rayN.sourcelink.json

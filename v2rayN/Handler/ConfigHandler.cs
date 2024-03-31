@@ -137,7 +137,7 @@ namespace v2rayN.Handler
             }
             if (Utils.IsNullOrEmpty(config.constItem.speedPingTestUrl))
             {
-                config.constItem.speedPingTestUrl = Global.SpeedPingTestUrl;
+                config.constItem.speedPingTestUrl = Global.ConnectTestUrl;
             }
             if (Utils.IsNullOrEmpty(config.constItem.defIEProxyExceptions))
             {

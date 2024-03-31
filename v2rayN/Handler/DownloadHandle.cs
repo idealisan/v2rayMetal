@@ -196,7 +196,7 @@ namespace v2rayN.Handler
 
                 try
                 {
-                    string status = GetRealPingTime(Global.SpeedPingTestUrl, webProxy, out int responseTime);
+                    string status = GetRealPingTime(Global.ConnectTestUrl, webProxy, out int responseTime);
                     bool noError = Utils.IsNullOrEmpty(status);
                     return noError ? responseTime : -1;
                 }
